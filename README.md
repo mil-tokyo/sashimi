@@ -26,4 +26,5 @@ A project to learn a convolutional neural network distributedly (DistributedLarg
 	cd calculation_framework
 	./run.sh
 
+Maybe you should use GPGPU since the project above is so time-consuming.
 If you would like to use GPGPU, check Sushi ( https://github.com/mil-tokyo/sushi ) and install a WebCL implementation.
