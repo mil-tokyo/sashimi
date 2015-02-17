@@ -1,0 +1,14 @@
+<% for project in @projects : %>
+<tr>
+	<td><input type="button" value="<%= project.id %>" class="kill_button" /></td>
+	<td><%= project.id %></td>
+	<td><%= project.name %></td>
+	<td><%= project.created %></td>
+	<td><%= project.tasks_count %></td>
+	<td><%= project.free_tickets_count %></td>
+	<td><%= project.calculating_tickets_count %></td>
+	<td><%= project.finished_tickets_count %></td>
+	<td><%= project.reduced_tickets_count %></td>
+	<td><%= project.error_reports_count %></td>
+</tr>
+<% end %>

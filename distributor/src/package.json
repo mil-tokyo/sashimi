@@ -1,0 +1,16 @@
+{
+  "name": "WebServer",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.2.6",
+    "ect": "*",
+    "websocket.io": "~0.2.1",
+    "config": "~1.2.1",
+    "mysql": "~2.5.1",
+    "cluster": "~0.7.7"
+  }
+}

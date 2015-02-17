@@ -1,0 +1,35 @@
+<% extend 'layout' %>
+
+<div class="container">
+	<h2>Calculation Framework</h2>
+	<p>All you need is to access this web page. Your computer is a node for distributed calculation right now.</p>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<div id="console"></div>
+		</div>
+		<div class="col-md-3 tile">
+			<h3><span id="task_loaded">0</span> Tasks</h3>
+			<p>you are engaged on</p>
+		</div>
+		<div class="col-md-3 tile">
+			<h3><span id="ticket_finished">0</span> Tickets</h3>
+			<p>you already finished</p>
+		</div>
+	</div>
+</div>
+
+<script src="/js/sashimi/sashimi.js"></script>
+<script src="/js/sashimi/utils.js"></script>
+<script src="/js/sashimi/framework/framework.js"></script>
+<script src="/js/sashimi/framework/utils.js"></script>
+<script src="/js/sashimi/framework/ticket_executor.js"></script>
+<script>
+$(function() {
+	setTimeout(function() {
+		new Sashimi.Framework('<%= @host %>', <%= @port %>);
+	}, Math.floor(Math.random() * 5000));
+});
+</script>

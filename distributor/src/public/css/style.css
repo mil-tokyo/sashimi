@@ -1,0 +1,25 @@
+.tile {
+	text-align : center;
+}
+
+p.log {
+	margin : 2px 5px;
+	padding : 0px;
+}
+p.error {
+	color : red;
+}
+
+li {
+	text-align : left;
+}
+
+#console_textarea {
+	width : 100%;
+	height : 200px;
+}
+
+#alerts {
+	width : 100%;
+	position : absolute;
+}
