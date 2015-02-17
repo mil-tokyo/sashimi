@@ -1,0 +1,25 @@
+{
+  "name": "MainServer",
+  "version": "0.1.0",
+  "description": "MainServer",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "Node.js",
+    "Eclipse",
+    "Nodeclipse"
+  ],
+  "author": "",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "config": "1.0.2",
+    "mysql": "~2.5.1",
+    "get-pixels": "~3.1.0",
+    "request": "~2.51.0",
+    "log4js": "~0.6.22"
+  }
+}

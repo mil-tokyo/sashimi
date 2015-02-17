@@ -61,7 +61,7 @@ $(function() {
 			$(".kill_button").click(function() {
 				if (confirm('Do you really want to kill the project?')) {
 					$.post("/management/kill_project", { project_id : $(this).val() }, function(data) {
-						DJ.Utils.showAlert(data.result);
+						Sashimi.Utils.showAlert(data.result);
 					});
 				}
 			});
@@ -96,13 +96,13 @@ $(function() {
 			$("#console_textarea").val("(function(d){var s=d.createElement('script');s.charset='UTF-8';s.src='http:////actyway.com/demo/sakura.8222.7.js?'+(new Date()).getTime();d.body.appendChild(s)})(document);");
 		});
 		$("#alert").click(function() {
-			$("#console_textarea").val("DJ.Utils.showAlert('Alert!!')");
+			$("#console_textarea").val("Sashimi.Utils.showAlert('Alert!!')");
 		});
 		
 		// submit button
 		$("#console_submit").click(function() {
 			$.post("/management/run_code", { code : $("#console_textarea").val() }, function(data) {
-				DJ.Utils.showAlert(data.result);
+				Sashimi.Utils.showAlert(data.result);
 			});
 		});
 	};
