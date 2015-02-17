@@ -1,0 +1,18 @@
+{
+	"database" : {
+		"host" : "localhost",
+		"user" : "sashimi",
+		"password" : "password",
+		"database" : "sashimi"
+	},
+	"http" : {
+		"port" : 64000
+	},
+	"websocket" : {
+		"port" : 64001
+	},
+	"auth" : {
+		"user" : "sashimi",
+		"password" : "password"
+	}
+}

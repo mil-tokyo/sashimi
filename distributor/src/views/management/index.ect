@@ -1,0 +1,114 @@
+<% extend 'layout' %>
+
+<div class="container">
+	<h2>Management</h2>
+	<p>You can manage projects, tasks and nodes.</p>
+</div>
+
+<div class="container">
+	<h3>Ongoing Projects</h3>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>KILL</th>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Created</th>
+				<th>#Tasks</th>
+				<th>#Free Tickets</th>
+				<th>#Calculating Tickets</th>
+				<th>#Finished Tickets</th>
+				<th>#Reduced Tickets</th>
+				<th>#Error Reports</th>
+			</tr>
+		</thead>
+		<tbody id="ongoing_projects_content">
+		</tbody>
+	</table>
+	<div class="row">
+		<div class="col-sm-8 tile">
+			<h3><span id="connected_clients_num"></span> Connected Clients</h3>
+			<p id="toggle_clients_details">details</p>
+			<table class="table" id='clients_details'>
+				<thead>
+					<td>UserAgenet</td>
+					<td>Language</td>
+				</thead>
+				<tbody id="connected_clients">
+				</tbody>
+			</table>
+		</div>
+		<div class="col-sm-4 tile">
+			<h3>Console</h3>
+			<textarea id="console_textarea"></textarea>
+			<ul>
+				<li id="reload">Reload</li>
+				<li id="sl">SL</li>
+				<li id="sakura">Sakura</li>
+				<li id="alert">Alert</li>
+			</ul>
+			<input type="button" id="console_submit" value="submit" />
+		</div>
+	</div>
+</div>
+
+<script>
+$(function() {
+	var redraw = function() {
+		/* get ongoint projects */
+		$("#ongoing_projects_content").load("/management/ongoing_projects", function() {
+			// enable kill buttons
+			$(".kill_button").click(function() {
+				if (confirm('Do you really want to kill the project?')) {
+					$.post("/management/kill_project", { project_id : $(this).val() }, function(data) {
+						DJ.Utils.showAlert(data.result);
+					});
+				}
+			});
+			/* get number of clients connected */
+			$.get("/management/connected_clients_num", function(data) {
+				$("#connected_clients_num").html(data.num);
+				/* get detailed information of clients connected */
+				$("#connected_clients").load("/management/connected_clients", function() {
+					setTimeout(redraw, 1000);
+				});
+			});
+		});
+	};
+	
+	var initClientsDetails = function() {
+		$("#clients_details").hide();
+		$("#toggle_clients_details").css('cursor', 'pointer');
+		$("#toggle_clients_details").click(function() {
+			$("#clients_details").toggle();
+		});
+	};
+	
+	var initConsoleButtons = function() {
+		// shortcut bottons
+		$("#reload").click(function() {
+			$("#console_textarea").val("location.reload();");
+		});
+		$("#sl").click(function() {
+			$("#console_textarea").val("(function(){var d=document,sl_open,sl_run,sl_close,s=d.createElement('script');s.charset='UTF-8';s.src='http://labs.creazy.net/sl/bookmarklet.js';d.body.appendChild(s)})();");
+		});
+		$("#sakura").click(function() {
+			$("#console_textarea").val("(function(d){var s=d.createElement('script');s.charset='UTF-8';s.src='http:////actyway.com/demo/sakura.8222.7.js?'+(new Date()).getTime();d.body.appendChild(s)})(document);");
+		});
+		$("#alert").click(function() {
+			$("#console_textarea").val("DJ.Utils.showAlert('Alert!!')");
+		});
+		
+		// submit button
+		$("#console_submit").click(function() {
+			$.post("/management/run_code", { code : $("#console_textarea").val() }, function(data) {
+				DJ.Utils.showAlert(data.result);
+			});
+		});
+	};
+	
+	initClientsDetails();
+	initConsoleButtons();
+	setTimeout(redraw, 0);
+});
+</script>

@@ -1,0 +1,9 @@
+
+<% for client in @connected_clients : %>
+	<% if client: %>
+		<tr>
+			<td><%= client.user_agent %></td>
+			<td><%= client.language %></td>
+		</tr>
+	<% end %>
+<% end %>
