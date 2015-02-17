@@ -6,7 +6,7 @@ Sashimi is being developed to be the distributed calculation framework easiest t
 ## How to Try
 A project to learn a convolutional neural network distributedly (DistributedLargeConvnetProject) is implemented. 
 
-### initialize and download dataset
+### initialize submodules
 	git submodule init
 	git submodule update
 
