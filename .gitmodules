@@ -1,6 +1,6 @@
 [submodule "calculation_framework/src/static_codes/sushi"]
 	path = calculation_framework/src/static_codes/sushi
-	url = git@github.com:mil-tokyo/sushi.git
+	url = https://github.com/mil-tokyo/sushi.git
 [submodule "calculation_framework/src/static_codes/sukiyaki"]
 	path = calculation_framework/src/static_codes/sukiyaki
-	url = git@github.com:mil-tokyo/sukiyaki.git
+	url = https://github.com/mil-tokyo/sukiyaki.git
