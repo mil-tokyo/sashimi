@@ -3,6 +3,8 @@ Distributed Calculation Framework for JavaScript.
 
 Sashimi is being developed to be the distributed calculation framework easiest to build. All you have to do to be a node of distributed calculation is access a web site via a browser. Projects are sliced into thin pieces and calculated distributedly in your browsers.
 
+Related papers may be available ( http://mil-tokyo.github.io/miljs.html ).
+
 ## How to Try
 A project to learn a convolutional neural network distributedly (DistributedLargeConvnetProject) is implemented. 
 
