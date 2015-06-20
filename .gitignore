@@ -2,3 +2,5 @@
 .settings
 .DS_Store
 *_cache.json
+calculation_framework/src/logs/*
+!.gitkeep

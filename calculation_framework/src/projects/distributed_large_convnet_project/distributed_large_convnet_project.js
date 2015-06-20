@@ -324,12 +324,13 @@ var DistributedLargeConvnetProject = function() {
 				}
 				// caluclate fitting_error
 				if ($M.CL) {
-					var square_sum = this.sukiyaki.calcSquareSum(this.sukiyaki.layers[this.sukiyaki.layers.length - 1].delta_output).largeTimes(1.0 / image_batch.cols);
+					var square_sum_mat = this.sukiyaki.calcSquareSum(this.sukiyaki.layers[this.sukiyaki.layers.length - 1].delta_output).largeTimes(1.0 / image_batch.cols);
+					var square_sum = square_sum_mat.get(0, 0);
+					square_sum_mat.destruct();
 				} else {
 					var square_sum = this.sukiyaki.calcSquareSum(this.sukiyaki.layers[this.sukiyaki.layers.length - 1].delta_output) / image_batch.cols;
 				}
-				square_sum.syncData();
-				console.log('fitting_error : ' + square_sum.data[0]);
+				console.log('fitting_error : ' + square_sum);
 				this.sukiyaki.release();
 
 				image_batch.destruct();
