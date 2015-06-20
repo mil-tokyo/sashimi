@@ -1,3 +1,3 @@
 cd `dirname $0`
 cd ./src
-node app
+node app $1
