@@ -6,10 +6,10 @@ var ProjectBase = function() {
 	// variables
 	this.name = null;
 	this.project_id = null;
+};
 
 	// methods
-	this.run = null;
-	this.main = function() {
+	ProjectBase.prototype.main = function() {
 		var sql = 'INSERT INTO `projects` (`name`, `created`) VALUES (?, NOW());';
 		var query = DB.getConnection().query(sql, [ this.name ], function(err, results) {
 			assert.ifError(err);
@@ -17,26 +17,26 @@ var ProjectBase = function() {
 			this.run();
 		}.bind(this));
 	};
-	this.createTask = function(task_base) {
+	ProjectBase.prototype.createTask = function(task_base) {
 		var task = new task_base();
 		task.setProjectId(this.project_id);
 		return task;
 	};
-	this.finishProject = function() {
+	ProjectBase.prototype.finishProject = function() {
 		var sql = 'DELETE FROM `projects` WHERE `projects`.`id` = ?';
 		var query = DB.getConnection().query(sql, [this.project_id], function(err, results) {
 			assert.ifError(err);
 			process.exit();
 		}.bind(this));
 	};
-	this.addDatum = function(content, callback) {
+	ProjectBase.prototype.addDatum = function(content, callback) {
 		var sql = 'INSERT INTO `data` (`project_id`, `content`, `created`) VALUES (?, ?, NOW());';
 		var query = DB.getConnection().query(sql, [this.project_id, JSON.stringify(content)], function(err, results) {
 			assert.ifError(err);
 			callback(results.insertId);
 		});
 	};
-	this.addFile = function(filename, callback) {
+	ProjectBase.prototype.addFile = function(filename, callback) {
 		fs.readFile(filename, function(err, file_bin) {
 			assert.ifError(err);
 			var sql = 'INSERT INTO `files` (`project_id`, `content`, `created`) VALUES (?, ?, NOW());';
@@ -46,6 +46,6 @@ var ProjectBase = function() {
 			});
 		}.bind(this));
 	};
-}
+
 
 module.exports = ProjectBase;
