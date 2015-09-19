@@ -9,9 +9,9 @@ var TaskBase = function() {
 	this.task_id = null;
 	this.static_code_files = [];
 	this.static_code = '';
-	
+	}
 	// methods
-	this.block = function(callback) {
+	TaskBase.prototype.block = function(callback) {
 		if (!this.task_id || this.saving_count > 0) {
 			setTimeout(function() { this.block(callback); }.bind(this), 1000);
 		} else {
@@ -44,7 +44,7 @@ var TaskBase = function() {
 			}.bind(this));
 		}
 	};
-	this.forEachTicketFinished = function(callback, finish_callback) {
+	TaskBase.prototype.forEachTicketFinished = function(callback, finish_callback) {
 		if (!this.task_id || this.saving_count > 0) {
 			setTimeout(function() { this.forEachTicketFinished(callback, finish_callback); }.bind(this), 1000);
 		} else {
@@ -87,10 +87,10 @@ var TaskBase = function() {
 			}.bind(this));
 		}
 	};
-	this.run = function(input, output) {
+	TaskBase.prototype.run = function(input, output) {
 		throw "A task class does not implement run function.";
 	};
-	this.calculate = function(inputs, static_codes_read_count) {
+	TaskBase.prototype.calculate = function(inputs, static_codes_read_count) {
 		// create task
 		if (!this.task_id) {
 			// load static code files
@@ -128,11 +128,9 @@ var TaskBase = function() {
 			}.bind(this));
 		}
 	}
-	this.setProjectId = function(project_id) {
+	TaskBase.prototype.setProjectId = function(project_id) {
 		this.project_id = project_id;
 	}
 	
-	// constructor
-}
 
 module.exports = TaskBase;
