@@ -4,6 +4,9 @@ var SmallPiTask = function() {
 };
 SmallPiTask.prototype = new TaskBase();
 SmallPiTask.prototype.run = function(input, output) {
+    //for demo
+    $('#currentpi').remove();
+    $('h2').after('<p id="currentpi">Calculating PI using montecarlo method.<br />Total points = ' + input.sum_points + '<br />Current PI = ' + input.current_pi + '<br />Diff to true PI = ' + (input.current_pi - Math.PI).toExponential(2) + '</p>');
         var n_points = input.n_points | 0;
         var n_points_in_circle = 0;
         var n_points_out_circle = 0;
