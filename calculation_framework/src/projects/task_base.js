@@ -36,9 +36,9 @@ var TaskBase = function() {
 						var sql = 'UPDATE `tickets` SET `tickets`.`status` = "reduced" WHERE `tickets`.`task_id` = ?';
 						var query = DB.getConnection().query(sql, [this.task_id], function(err, results) {
 							assert.ifError(err);
-							this.task_id = null;
+							//this.task_id = null;
+							callback(tickets_to_callback);
 						}.bind(this));
-						callback(tickets_to_callback);
 					}.bind(this));
 				}
 			}.bind(this));
