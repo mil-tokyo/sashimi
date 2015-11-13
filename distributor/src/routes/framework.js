@@ -5,8 +5,9 @@ exports.index = function(req, res) {
 	res.render('framework/index',{
 		title : 'Sashimi - Framework',
 		page : 'framework',
-		host : getLocalAddress().ipv4[0].address/*'miura2'*/,
-		port : config.websocket.port
+//		host : getLocalAddress().ipv4[0].address/*'miura2'*/,
+                host : 'location.hostname',//for server with multiple ip addresses
+		port : (config.websocket.proxy_from_http ? 'location.port' : config.websocket.port)
 	});
 };
 

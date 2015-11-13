@@ -20,6 +20,11 @@ var config = require('config')
   , MasterToWorker = require('./master_to_worker')
   , share = require('./share');
 
+var httpProxy;
+if (config.websocket.proxy_from_http) {
+	httpProxy = require('http-proxy');
+}
+
 var app = express();
 
 // ECT
@@ -78,7 +83,18 @@ if (cluster.isMaster) {
 	share.ticket_distributor = new TicketDistributor(config.websocket.port);
 	
 } else {
-	http.createServer(app).listen(config.http.port, function(){
+	var server = http.createServer(app);
+	if (config.websocket.proxy_from_http) {
+		// redirect websocket connection to TicketDistributor
+		var proxy = httpProxy.createServer({
+			target: 'ws://localhost:' + config.websocket.port,
+			ws: true
+		});
+		server.on('upgrade', function (req, socket, head) {
+			proxy.ws(req, socket, head);
+		});
+	}
+	server.listen(config.http.port, function(){
 		console.log('Http server listening on port ' + config.http.port);
 	});
 	share.worker_to_master = new WorkerToMaster();

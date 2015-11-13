@@ -9,7 +9,8 @@
 		"port" : 64000
 	},
 	"websocket" : {
-		"port" : 64001
+		"port" : 64001,
+		"proxy_from_http" : true
 	},
 	"auth" : {
 		"user" : "sashimi",
