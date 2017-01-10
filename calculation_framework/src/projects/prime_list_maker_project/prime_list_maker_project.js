@@ -15,7 +15,7 @@ var PrimeListMakerProject = function() {
 			console.log('all tickets have been finished');
 			for (var i = 0; i < results.length; i++) {
 				if (results[i].output.is_prime) {
-					console.log(i + ' is a prime number.');
+					console.log(results[i].input.candidate + ' is a prime number.');
 				}
 			}
 		});
